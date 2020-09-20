@@ -30,20 +30,26 @@ def main() -> None:
                         }
     game_dialogue: Dict = {"p":"paper breaks rock", "r":"rock breaks scissors", "s":"scissors breaks paper"}
     game_choice: Dict = {"p":"paper", "r":"rock", "s":"scissors"}
-    while True:
-        usr_choice: str = get_usr_choice()
-        if usr_choice == "quit":
-            break
-        elif usr_choice == "retry":
-            continue
-        comp_choice: str = get_computer_choice()
-        game_result: str = game_rules[usr_choice][comp_choice]
-        if game_result == "Win":
-            print(f"{game_dialogue[usr_choice]} - You Win!")
-        elif game_result == "Lose":
-            print(f"{game_dialogue[comp_choice]} - I Win!")
-        else:
-            print(f"Tie: We both choose {game_choice[usr_choice]}")
+    #
+    # Bad Smell :( from line 36 to 49
+    # 
+    #   while True:
+    #     usr_choice: str = get_usr_choice()
+    #     if usr_choice == "quit":
+    #         break
+    #     elif usr_choice == "retry":
+    #         continue
+    #     comp_choice: str = get_computer_choice()
+    #     game_result: str = game_rules[usr_choice][comp_choice]
+    #     if game_result == "Win":
+    #         print(f"{game_dialogue[usr_choice]} - You Win!")
+    #     elif game_result == "Lose":
+    #         print(f"{game_dialogue[comp_choice]} - I Win!")
+    #     else:
+    #         print(f"Tie: We both choose {game_choice[usr_choice]}")
+    #  
+    # add more documentations. 
+    #
 
 if __name__ == '__main__':
     main()
