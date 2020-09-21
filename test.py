@@ -1,20 +1,14 @@
-def raise_exception():
-    raise ValueError
-    print("leaving raise_exception()")
+class Aa:
+    def a(self):
+        print('this is 000000')
 
-def inner():
-    raise_exception()
-    print("leaving inner()")
+    def b(self):
+        print('1')
+    
+    def getOperand(self, myop):
+        mydict = {'0':self.a, '1':self.b}
+        return mydict[myop]()
+    
 
-def outer():
-    inner()
-    print("leaving outer()")
-
-def way_out():
-    try:
-        outer()
-    except ValueError:
-        print("way_out(): caught a ValueError")
-    print("leaving way_out()")
-
-way_out()
+myclass = Aa()
+myclass.getOperand('0')
