@@ -1,14 +1,16 @@
-class Aa:
-    def a(self):
-        print('this is 000000')
+from typing import Generator
+def fool(start, end):
+    total = 0
+    for item in range(start, end):
+        total += item
+    return total
 
-    def b(self):
-        print('1')
-    
-    def getOperand(self, myop):
-        mydict = {'0':self.a, '1':self.b}
-        return mydict[myop]()
-    
+assert fool(1,1)==0
 
-myclass = Aa()
-myclass.getOperand('0')
+def echo_round() -> Generator[int, float, str]:
+    sent = yield 0
+    while sent >= 0:
+        sent = yield round(sent)
+    return 'Done'
+for index in range(3):
+    print(echo_round())
