@@ -111,3 +111,19 @@ class Fraction:
             Otherwise return False.
         """
         return not(self<other)
+    
+    def simplify(self) -> "Fraction":
+        """ Simplify the fraction and return a new simplified one.
+        """
+        the_gcf: int  = self.find_gcf(self.denominator, self.numerator)
+        return Fraction(self.numerator/the_gcf, self.denominator/the_gcf)
+        
+    
+    def find_gcf(self, val_1: int, val_2: int) -> int:
+        """ find the common greatest factor and return it.
+        """
+        if val_1 > val_2:
+            val_1, val_2 = val_2, val_1
+        for gcf in range(val_1+1, 0, -1):
+            if val_2 % gcf == 0 and val_1 % gcf == 0:
+                return gcf

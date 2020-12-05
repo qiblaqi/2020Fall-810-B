@@ -65,5 +65,10 @@ class TestHW03(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             Fraction(1, 3)/Fraction(0, 3) # it should raise a ZeroDivisionError as Fraction B's value is 0
         
+    def test_simplify(self) -> None:
+        """ test the simplify function which using find_gcf()"""
+        self.assertEqual(Fraction(9,63).simplify(), Fraction(1,7))
+        self.assertEqual(Fraction(11,21).simplify(),Fraction(11,21))
+        
 if __name__ == '__main__':
     unittest.main()
