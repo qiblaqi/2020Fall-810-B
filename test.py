@@ -1,2 +1,8 @@
-print("hello! This is M1. ")
-print("Big Sur is awesome! ")
+lst = ["c"
+, "g"
+, "hmpq"
+, "mvmp"
+,"s"
+] 
+lst.sort()
+print(lst)
