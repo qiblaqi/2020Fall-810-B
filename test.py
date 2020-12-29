@@ -1,3 +1,3 @@
-a = [1]
-a.insert(2,"a")
-print(a)
+a = dict()
+a['banna']='yeah'
+print(a.items())
