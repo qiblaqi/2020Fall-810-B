@@ -1,4 +1,3 @@
-a = " "
-b = " s d"
-a+= b
-print(len(a))
+a = [1]
+a.insert(2,"a")
+print(a)
