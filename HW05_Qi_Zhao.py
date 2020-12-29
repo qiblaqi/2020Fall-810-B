@@ -53,14 +53,6 @@ def get_lines(path: str) -> Iterator[int]:
                     elif my_line.endswith("\\"):
                         my_line = my_line[:-1]
                         continue
-                elif my_line.find("#")!=-1:
-                    if my_line.find("#") == 0:
-                        my_line = ""
-                        continue
-                    else:
-                        my_line[0:my_line.find("#")]
-                        yield my_line
-                        my_line = ""
                 else :
                     my_line = ""
                     continue            
