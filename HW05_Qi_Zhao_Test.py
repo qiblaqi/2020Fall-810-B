@@ -26,6 +26,14 @@ class TestHW05(unittest.TestCase):
         self.assertEqual(find_second(" ", "   "), 1)
         self.assertEqual(find_second('',''), -1)
         self.assertEqual(find_second("abcd", "Hello abc!"), -1)
+        
+    def test_get_lines(self) -> None:
+        test_path_foo:str = "/Users/qizhao/Documents/2020Fall-810-B/111213.txt"
+        test_path:str = "/Users/qizhao/Documents/2020Fall-810-B/HW05_test.txt"
+        result:list = ["<line0>","<line1>","<line2>","<line3.1 line3.2 line3.3>","<line4.1 line4.2>","<line5>","<line6>"]
+        with self.assertRaises(FileNotFoundError):
+            list(get_lines(test_path_foo))
+        self.assertEqual(list(get_lines(test_path)),result)
 
 if __name__ == '__main__':
     unittest.main()

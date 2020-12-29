@@ -1,6 +1,8 @@
 """
-This is HW05 Written By Qi Zhao. This file contains following functions: reverse(s), substring(target: str, s: str),find_second(target: str, string: str)
+This is HW05 Written By Qi Zhao. This file contains following functions: reverse(s), substring(target: str, s: str),
+find_second(target: str, string: str)
 """
+from typing import Iterator, IO
 
 def reverse(s: str) -> str:
     """ this function reverse the given string s and return the new reversed one.
@@ -31,3 +33,34 @@ def find_second(target: str, string: str) -> int:
     """
     return string.find(target, string.find(target)+1)
 
+def get_lines(path: str) -> Iterator[int]:
+    """ opens a file from path for reading and returns one line from the file at a time.
+        would raise a FileNotFound exception if the file can't be opened for reading. 
+    """
+    try:
+        fp:IO = open(path,'r')
+    except FileNotFoundError:
+        raise
+    else:
+        with fp:
+            my_line:str = ""
+            for line in fp.readlines():
+                my_line += line[:-1]
+                if  my_line.startswith("<"):
+                    if my_line.find(">")!=-1:
+                        yield my_line[0:my_line.find(">")+1]
+                        my_line = ""
+                    elif my_line.endswith("\\"):
+                        my_line = my_line[:-1]
+                        continue
+                elif my_line.find("#")!=-1:
+                    if my_line.find("#") == 0:
+                        my_line = ""
+                        continue
+                    else:
+                        my_line[0:my_line.find("#")]
+                        yield my_line
+                        my_line = ""
+                else :
+                    my_line = ""
+                    continue            

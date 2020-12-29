@@ -1,8 +1,4 @@
-lst = ["c"
-, "g"
-, "hmpq"
-, "mvmp"
-,"s"
-] 
-lst.sort()
-print(lst)
+a = " "
+b = " s d"
+a+= b
+print(len(a))
