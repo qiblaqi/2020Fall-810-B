@@ -3,7 +3,7 @@ This is HW08 Written By Qi Zhao. This file contains following functions: date_ar
 file_reader(str, int, str, bool) -> Iterator[List[str]], class FileAnalyzer
 """
 from typing import List, Tuple, Iterator, Dict
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from prettytable import PrettyTable
 
 def date_arithmetic() -> Tuple[datetime, datetime, int]:
@@ -12,9 +12,9 @@ def date_arithmetic() -> Tuple[datetime, datetime, int]:
         What is the date three days after Feb 27, 2019?
         How many days passed between Feb 1, 2019 and Sept 30, 2019?
     """
-    three_days_after_02272020: datetime = # your code goes here for calculation
-    three_days_after_02272019: datetime = # your code goes here for calculation
-    days_passed_02012019_09302019: int = # your code goes here for calculation
+    three_days_after_02272020: datetime = datetime(2020,2,27) + timedelta(days=3)
+    three_days_after_02272019: datetime = datetime(2019,2,27) + timedelta(days=3)
+    days_passed_02012019_09302019: int = (datetime(2019,9,30) - datetime(2019,2,1)).days
 
     return three_days_after_02272020, three_days_after_02272019, days_passed_02012019_09302019
  
@@ -22,7 +22,20 @@ def file_reader(path: str, fields:int, sep=',', header=False) -> Iterator[List[s
     """ file_reader() to read field-separated text files and yield a tuple with all of the values 
         from a single line in the file on each call to next()
     """
-    pass
+    try:
+        fp = open(path,'r')
+    except FileNotFoundError:
+        raise
+    with fp:
+        line_count: int = 0
+        for my_line in fp:
+            line_count += 1
+            my_line = my_line.strip('\n')
+            my_list:list = [ item for item in my_line.split(',') ]
+            if len(my_list) != fields:
+                raise ValueError(f"{path} has {len(my_list)} fields on line {line_count} but expected {fields}")
+            else:
+                yield [ item for item in my_line.split(',') ]
 
 class FileAnalyzer:
     """ FileAnalyzer that given a directory name, searches that directory for Python files """

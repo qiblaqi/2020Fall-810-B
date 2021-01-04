@@ -1,8 +1,5 @@
-a = "abc"
-b = "cba"
-alst = list(a)
-blst = list(b)
-if sorted(alst) == sorted(blst):
-    print("True")
-else:
-    print("False")
+a = "abc,bcd,edf\n"
+a = a.strip('\n')
+b = a.split(',')
+print(b)
+
